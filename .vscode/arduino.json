@@ -1,0 +1,7 @@
+{
+    "configuration": "softdevice=s140v6,debug=l0",
+    "board": "Seeeduino:nrf52:xiaonRF52840Sense",
+    "sketch": "PWM_Code\\PWM_Code.ino",
+    "port": "COM7",
+    "programmer": "nrfjprog"
+}
