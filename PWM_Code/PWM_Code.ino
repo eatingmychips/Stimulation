@@ -35,10 +35,6 @@ void loop() {
 }
 
 
-//Include Pulse Width for functions. 
-//Typically between 5 - 100Hz. 
-//How we can describe the difference between burst and continuous stimulation
-
 
 void right_stim(long freq, long width, long len){
   Serial.println("Right Stim called");
