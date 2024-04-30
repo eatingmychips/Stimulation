@@ -14,8 +14,12 @@ void right_elyt_stim(long freq, long width, long len);
 void left_elyt_stim(long freq, long width, long len);
 
 String command;
-int frequ; 
-
+String freqS;
+String widthS;
+String lenS;
+long freq; 
+long width;
+long len;
 
 
 
@@ -29,40 +33,50 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("Type command: '1','2': Left, Right Antenna Stimulation (respectively)   '3','4': Left, Right Elytra Stimulation (repsectively)");
+  
+  Serial.println("Please enter your desired frequency: ");
   while (Serial.available() <= 0){
   }
-  command = Serial.readStringUntil('\n');
-  if (command.equals("1")){
-    Serial.println("Please enter your desired frequency: ");
-    while (Serial.available() <= 0){
-    }
-    String freqS = Serial.readStringUntil('\n');
-    frequ = freqS.toInt();
-    right_stim(frequ, 10, 1000);
-  }else if (command.equals("2")){
-    Serial.println("Please enter your desired frequncy: ");
-    while (Serial.available() <= 0){
-    }
-    String freqS = Serial.readStringUntil('\n');
-    frequ = freqS.toInt();
-    left_stim(frequ, 10, 1000);
-  }else if (command.equals("3")){
-    Serial.println("Please enter your desired frequency: ");
-    while (Serial.available() <= 0){
-    }
-    String freqS = Serial.readStringUntil('\n');
-    frequ = freqS.toInt();
-    right_elyt_stim(frequ, 10, 1000);
-  }else if (command.equals("3")){
-    Serial.println("Please enter your desired frequency: ");
-    while (Serial.available() <= 0){
-    }
-    String freqS = Serial.readStringUntil('\n');
-    frequ = freqS.toInt();
-    left_elyt_stim(frequ, 10, 1000);
+  freqS = Serial.readStringUntil('\n');
+  freq = freqS.toInt();
+
+  Serial.println("Please enter your desired pulse width (ms): ");
+  while (Serial.available() <= 0){
   }
-}
+  widthS = Serial.readStringUntil('\n');
+  width = widthS.toInt();
+
+  Serial.println("Please enter you desired stimulation period (ms): ");
+  while (Serial.available() <= 0){
+  }
+  lenS = Serial.readStringUntil('\n');
+  len = lenS.toInt();
+
+
+  while(true){
+    Serial.println("Type command: '1','2': Left, Right Antenna Stimulation (respectively)   '3','4': Left, Right Elytra Stimulation (repsectively)");
+    while (Serial.available() <= 0){
+    }
+    command = Serial.readStringUntil('\n');
+    if (command.equals("1")){
+      right_stim(freq, width, len);
+
+    }else if (command.equals("2")){
+      left_stim(freq, width, len);
+
+    }else if (command.equals("3")){
+      right_elyt_stim(freq, width, len);
+
+    }else if (command.equals("4")){
+      left_elyt_stim(freq, width, len);
+      
+    }
+    else if (command.equals("q")){
+      break;
+    }
+  }
+
+} 
 
 
 
@@ -104,7 +118,7 @@ void left_stim(long freq, long width, long len){
 }
 
 void right_elyt_stim(long freq, long width, long len){
-  Serial.println("Left Stim called");
+  Serial.println("Right Elytra Stim called");
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin3, LOW);
@@ -122,7 +136,7 @@ void right_elyt_stim(long freq, long width, long len){
 }
 
 void left_elyt_stim(long freq, long width, long len){
-  Serial.println("Left Stim called");
+  Serial.println("Right Elytra Stim called");
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin4, LOW);
