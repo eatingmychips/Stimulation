@@ -20,6 +20,9 @@ def send_serial(char):
     SerialObj.write(str.encode(char))    #transmit 'A' (8bit) to micro/Arduino
     SerialObj.close()
 
+def function_call(): 
+    print("We are calling the function")
+
 run = True
 while run:
 
@@ -30,7 +33,7 @@ while run:
             send_serial(char)
 
         if joystick.get_button(1):
-            print("We have pressed button: 'B'" )
+            print("We have pressed button: B" )
             char = 'B'
             send_serial(char)
 

@@ -57,21 +57,24 @@ void loop() {
     Serial.println("Type command: '1','2': Left, Right Antenna Stimulation (respectively)   '3','4': Left, Right Elytra Stimulation (repsectively)");
     while (Serial.available() <= 0){
     }
-    command = Serial.readStringUntil('\n');
-    if (command.equals("1")){
-      right_stim(freq, width, len);
-
-    }else if (command.equals("2")){
+    char command = Serial.read();
+    if (command == 'X'){
       left_stim(freq, width, len);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
-    }else if (command.equals("3")){
-      right_elyt_stim(freq, width, len);
+    }else if (command == 'Y'){
+      right_stim(freq, width, len);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
-    }else if (command.equals("4")){
+    }else if (command == 'A'){
       left_elyt_stim(freq, width, len);
-      
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+
+    }else if (command == 'B'){
+      right_elyt_stim(freq, width, len);
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     }
-    else if (command.equals("q")){
+    else if (command == 'q'){
       break;
     }
   }
@@ -136,7 +139,7 @@ void right_elyt_stim(long freq, long width, long len){
 }
 
 void left_elyt_stim(long freq, long width, long len){
-  Serial.println("Right Elytra Stim called");
+  Serial.println("Left Elytra Stim called");
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin4, LOW);
