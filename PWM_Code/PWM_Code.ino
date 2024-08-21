@@ -52,7 +52,8 @@ void loop() {
   lenS = Serial.readStringUntil('\n');
   len = lenS.toInt();
 
-
+  //TODO: Implement LED turn on for 0.5 seconds/however long if we have a stimulation. 
+  
   while(true){
     Serial.println("Type command: '1','2': Left, Right Antenna Stimulation (respectively)   '3','4': Left, Right Elytra Stimulation (repsectively)");
     while (Serial.available() <= 0){
