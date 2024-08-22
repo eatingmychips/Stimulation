@@ -52,7 +52,7 @@ void loop() {
   lenS = Serial.readStringUntil('\n');
   len = lenS.toInt();
 
-  //TODO: Implement LED turn on for 0.5 seconds/however long if we have a stimulation. 
+
   
   while(true){
     Serial.println("Type command: '1','2': Left, Right Antenna Stimulation (respectively)   '3','4': Left, Right Elytra Stimulation (repsectively)");
@@ -90,6 +90,7 @@ void right_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin1, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -101,6 +102,7 @@ void right_stim(long freq, long width, long len){
       digitalWrite(pin1, !digitalRead(pin1));
     }
   }
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void left_stim(long freq, long width, long len){
@@ -108,6 +110,7 @@ void left_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin2, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -119,6 +122,7 @@ void left_stim(long freq, long width, long len){
       digitalWrite(pin2, !digitalRead(pin2));
     }
   }
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void right_elyt_stim(long freq, long width, long len){
@@ -126,6 +130,7 @@ void right_elyt_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin3, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -137,12 +142,14 @@ void right_elyt_stim(long freq, long width, long len){
       digitalWrite(pin3, !digitalRead(pin3));
     }
   }
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void left_elyt_stim(long freq, long width, long len){
   Serial.println("Left Elytra Stim called");
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
+  digitalWrite(LED_BUILTIN, HIGH);
   digitalWrite(pin4, LOW);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
@@ -155,4 +162,5 @@ void left_elyt_stim(long freq, long width, long len){
       digitalWrite(pin4, !digitalRead(pin4));
     }
   }
+  digitalWrite(LED_BUILTIN, LOW);
 }
