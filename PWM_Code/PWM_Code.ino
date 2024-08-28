@@ -59,21 +59,22 @@ void loop() {
     while (Serial.available() <= 0){
     }
     char command = Serial.read();
+    digitalWrite(LED_BUILTIN, HIGH);
     if (command == 'X'){
       left_stim(freq, width, len);
-      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'Y'){
       right_stim(freq, width, len);
-      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'A'){
       left_elyt_stim(freq, width, len);
-      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'B'){
       right_elyt_stim(freq, width, len);
-      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     }
     else if (command == 'q'){
       break;
@@ -90,7 +91,7 @@ void right_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin1, LOW);
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -102,7 +103,7 @@ void right_stim(long freq, long width, long len){
       digitalWrite(pin1, !digitalRead(pin1));
     }
   }
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void left_stim(long freq, long width, long len){
@@ -110,7 +111,7 @@ void left_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin2, LOW);
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -122,7 +123,7 @@ void left_stim(long freq, long width, long len){
       digitalWrite(pin2, !digitalRead(pin2));
     }
   }
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void right_elyt_stim(long freq, long width, long len){
@@ -130,7 +131,7 @@ void right_elyt_stim(long freq, long width, long len){
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
   digitalWrite(pin3, LOW);
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
     if(curr_time - prev_time >= 1000/freq){
@@ -142,14 +143,14 @@ void right_elyt_stim(long freq, long width, long len){
       digitalWrite(pin3, !digitalRead(pin3));
     }
   }
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void left_elyt_stim(long freq, long width, long len){
   Serial.println("Left Elytra Stim called");
   unsigned long time_begin = millis();
   unsigned long prev_time = 0; 
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
   digitalWrite(pin4, LOW);
   while(millis() < len + time_begin){
     unsigned long curr_time = millis();
@@ -162,5 +163,5 @@ void left_elyt_stim(long freq, long width, long len){
       digitalWrite(pin4, !digitalRead(pin4));
     }
   }
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
