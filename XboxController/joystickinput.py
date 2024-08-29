@@ -10,16 +10,12 @@ joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_coun
 if joysticks:
     previous_button_states = [False] * joysticks[0].get_numbuttons()
 
+SerialObj = serial.Serial('COM12')  # Open serial port once at the beginning
+SerialObj.baudrate = 115200  # Set Baud rate to 115200
+
 def send_serial(char):
-    SerialObj = serial.Serial('COM7')  # COMxx format on Windows
-    SerialObj.baudrate = 115200  # Set Baud rate to 115200
-    SerialObj.bytesize = 8  # Number of data bits = 8
-    SerialObj.parity = 'N'  # No parity
-    SerialObj.stopbits = 1  # Number of Stop bits = 1
-    
     SerialObj.write(str.encode(char))  # Transmit the character to Arduino
-    time.sleep(0.5)
-    SerialObj.close()
+
 
 run = True
 while run:

@@ -44,6 +44,7 @@
                 "C:\\Users\\lachl\\AppData\\Local\\Arduino15\\packages\\Seeeduino\\hardware\\nrf52\\1.1.8\\variants\\Seeed_XIAO_nRF52840_Sense",
                 "C:\\Users\\lachl\\Documents\\Arduino\\libraries\\Adafruit_TinyUSB_Library\\src",
                 "C:\\Users\\lachl\\AppData\\Local\\Arduino15\\packages\\Seeeduino\\hardware\\nrf52\\1.1.8\\libraries\\SPI",
+                "C:\\Users\\lachl\\Documents\\Arduino\\libraries\\IRremote\\src",
                 "c:\\users\\lachl\\appdata\\local\\arduino15\\packages\\seeeduino\\tools\\arm-none-eabi-gcc\\9-2019q4\\arm-none-eabi\\include\\c++\\9.2.1",
                 "c:\\users\\lachl\\appdata\\local\\arduino15\\packages\\seeeduino\\tools\\arm-none-eabi-gcc\\9-2019q4\\arm-none-eabi\\include\\c++\\9.2.1\\arm-none-eabi",
                 "c:\\users\\lachl\\appdata\\local\\arduino15\\packages\\seeeduino\\tools\\arm-none-eabi-gcc\\9-2019q4\\arm-none-eabi\\include\\c++\\9.2.1\\backward",

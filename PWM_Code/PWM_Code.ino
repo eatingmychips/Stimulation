@@ -1,10 +1,5 @@
 
-#include <Adafruit_TinyUSB.h>
 
-#define pin1 1
-#define pin2 2
-#define pin3 3
-#define pin4 4
 const int led_pin = LED_BUILTIN;
 
 
@@ -20,7 +15,10 @@ String lenS;
 long freq; 
 long width;
 long len;
-
+#define pin1 1
+#define pin2 2 
+#define pin3 3
+#define pin4 4
 
 
 void setup() {
@@ -29,6 +27,7 @@ void setup() {
   pinMode(pin3, OUTPUT);
   pinMode(pin4, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+
   Serial.begin(115200);
 }
 
@@ -61,15 +60,18 @@ void loop() {
     char command = Serial.read();
     digitalWrite(LED_BUILTIN, HIGH);
     if (command == 'X'){
+      
       left_stim(freq, width, len);
       //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'Y'){
       right_stim(freq, width, len);
+      
       //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'A'){
       left_elyt_stim(freq, width, len);
+      
       //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
     }else if (command == 'B'){
