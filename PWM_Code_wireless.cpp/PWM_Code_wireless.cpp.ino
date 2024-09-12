@@ -50,30 +50,47 @@ void setup() {
 
 void loop() {
   IrSender.sendNEC(0x10EF807F, 32);
-  
+  int freq = 10;
+  int len = 100;
+
   while(true){
     Serial.println("Enter your commands on the Xbox Controller");
     while (Serial.available() <= 0){
     }
     char command = Serial.read();
-    if (command == 'X'){
+    //Left Antenna Stimulation
+    if (command == 'X' ){
       IrSender.sendNEC(0x10EF807F, 32);
+      String string_data = "Left, " + String(freq) + String(len);
+      Serial.print(string_data);
       delay(20);
-      //left_stim(freq, width, len);
-      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
+    //Right Antenna Stimulation
     }else if (command == 'Y'){
-      //right_stim(freq, width, len);
       IrSender.sendNEC(0x10EF10EF, 32);
+      String string_data = "Right, " + String(freq) + String(len);
+      Serial.print(string_data);
       delay(20);
-      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-
+      
+    //Both antenna
     }else if (command == 'A'){
-      //Both Eltra Stim
       IrSender.sendNEC(0x10EFA05F, 32);
+      String string_data = "Both, " + String(freq) + String(len);
+      Serial.print(string_data);
       delay(20);
-      //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
 
+    //Increase frequency
+    }else if(command == 'S'){
+      IrSender.sendNEC(0x10EFD827, 32);
+      freq += 10;
+      delay(20);
+
+    //Increase Duration
+    }else if(command == 'B'){
+      IrSender.sendNEC(0x10EF7887, 32);
+      len += 50;
+      delay(20);
+      
     }else if (command == 'q'){
       break;
     }
